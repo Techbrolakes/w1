@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Display from "./Display";
+// import Display from "./Display";
 
 function Weather() {
-  const [weather, setWeather] = useState([]);
+  //   const [weather, setWeather] = useState([]);
   const [form, setForm] = useState({
     city: "",
     country: "",
@@ -20,7 +20,7 @@ function Weather() {
         .then((res) => res.json())
         .then((data) => data);
 
-      setWeather({ data: data });
+      //   setWeather({ data: data });
     }
   }
 
@@ -61,12 +61,12 @@ function Weather() {
         </Button>
       </Form>
 
-      {/* {console.log(weather)} */}
+      {/* {console.log(weather)}
       {weather.data != undefined ? (
         <div>
           <Display data={weather.data} />
         </div>
-      ) : null}
+      ) : null} */}
     </Container>
   );
 }
