@@ -4,95 +4,89 @@ import styled from "styled-components";
 function Display(props) {
   const { data } = props;
   const iconurl =
-    "http://openweathermap.org/img/wn/" +
-    `${data.cod != 404 ? data.weather[0].icon : null}` +
-    ".png";
+    "http://openweathermap.org/img/wn/" + `${data.weather[0].icon}` + ".png";
   return (
     <Container>
-      {data.cod != 404 ? (
-        <React.Fragment>
-          <Card>
-            <CardLocation>
+      (
+      <React.Fragment>
+        <Card>
+          <CardLocation>
+            <span>
+              The weather in {data.name} , {data.sys.country}.
+            </span>
+            <span> As of {new Date().toLocaleTimeString()} is</span>
+          </CardLocation>
+          <CardIcon>
+            <div>
+              <h1>
+                {Math.floor(data.main.temp - 273.15)}
+                <sup>o</sup>
+              </h1>
+            </div>
+            <div>
+              <span>{data.weather[0].main}</span>
+              <img src={iconurl} alt="weather" />
+              <span> {data.weather[0].description}</span>
+            </div>
+          </CardIcon>
+        </Card>
+
+        <TempInfo>
+          <div>
+            <Info>
+              {" "}
+              <h4>High/Low</h4>
               <span>
-                The weather in {data.name} , {data.sys.country}.
+                {Math.floor(data.main.temp_max - 273.15)}/
+                {Math.floor(data.main.temp_min - 273.15)}
               </span>
-              <span> As of {new Date().toLocaleTimeString()} is</span>
-            </CardLocation>
-            <CardIcon>
-              <div>
-                <h1>
-                  {Math.floor(data.main.temp - 273.15)}
-                  <sup>o</sup>
-                </h1>
-              </div>
-              <div>
-                <span>{data.weather[0].main}</span>
-                <img src={iconurl} alt="weather" />
-                <span> {data.weather[0].description}</span>
-              </div>
-            </CardIcon>
-          </Card>
+            </Info>
+            <Info>
+              {" "}
+              <h4>Humidity</h4>
+              <span>{data.main.humidity} %</span>
+            </Info>
 
-          <TempInfo>
-            <div>
-              <Info>
-                {" "}
-                <h4>High/Low</h4>
-                <span>
-                  {Math.floor(data.main.temp_max - 273.15)}/
-                  {Math.floor(data.main.temp_min - 273.15)}
-                </span>
-              </Info>
-              <Info>
-                {" "}
-                <h4>Humidity</h4>
-                <span>{data.main.humidity} %</span>
-              </Info>
+            <Info>
+              {" "}
+              <h4>Pressure</h4>
+              <span>{data.main.pressure} hPa</span>
+            </Info>
+            <Info>
+              {" "}
+              <h4>Visibility</h4>
+              <span>{data.visibility / 1000} Km</span>
+            </Info>
+          </div>
 
-              <Info>
-                {" "}
-                <h4>Pressure</h4>
-                <span>{data.main.pressure} hPa</span>
-              </Info>
-              <Info>
-                {" "}
-                <h4>Visibility</h4>
-                <span>{data.visibility / 1000} Km</span>
-              </Info>
-            </div>
-
-            <div>
-              <Info>
-                <h4>Wind</h4>
-                <span>{Math.floor((data.wind.speed * 18) / 5)} km/hr</span>
-              </Info>
-              <Info>
-                <h4>Wind Direction</h4>
-                <span>
-                  {data.wind.deg}
-                  <sup>o</sup> deg
-                </span>
-              </Info>
-              <Info>
-                <h4>Sunrise</h4>
-                <span>
-                  {new Date(data.sys.sunrise * 1000).toLocaleTimeString()}
-                </span>
-              </Info>
-              <Info>
-                <h4>Sunset</h4>
-                <span>
-                  {new Date(data.sys.sunset * 1000).toLocaleTimeString()}
-                </span>
-              </Info>
-            </div>
-          </TempInfo>
-        </React.Fragment>
-      ) : (
-        <div className="maincard">
-          <h2>{data.message}</h2>
-        </div>
-      )}
+          <div>
+            <Info>
+              <h4>Wind</h4>
+              <span>{Math.floor((data.wind.speed * 18) / 5)} km/hr</span>
+            </Info>
+            <Info>
+              <h4>Wind Direction</h4>
+              <span>
+                {data.wind.deg}
+                <sup>o</sup> deg
+              </span>
+            </Info>
+            <Info>
+              <h4>Sunrise</h4>
+              <span>
+                {new Date(data.sys.sunrise * 1000).toLocaleTimeString()}
+              </span>
+            </Info>
+            <Info>
+              <h4>Sunset</h4>
+              <span>
+                {new Date(data.sys.sunset * 1000).toLocaleTimeString()}
+              </span>
+            </Info>
+          </div>
+        </TempInfo>
+      </React.Fragment>
+      )
     </Container>
   );
 }
