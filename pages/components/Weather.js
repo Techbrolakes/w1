@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import DisplayWeather from "./components/DisplayWeather";
 
 function Weather() {
+  const [weather, setWeather] = useState([]);
   const [form, setForm] = useState({
     city: "",
     country: "",
@@ -17,6 +19,8 @@ function Weather() {
       )
         .then((res) => res.json())
         .then((data) => data);
+
+      setWeather({ data: data });
     }
   }
 
@@ -56,6 +60,7 @@ function Weather() {
           Submit
         </Button>
       </Form>
+
       {/* {console.log(weather)} */}
       {weather.data != undefined ? (
         <div>
