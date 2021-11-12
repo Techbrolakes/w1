@@ -56,6 +56,12 @@ function Weather() {
           Submit
         </Button>
       </Form>
+      {/* {console.log(weather)} */}
+      {weather.data != undefined ? (
+        <div>
+          <DisplayWeather data={weather.data} />
+        </div>
+      ) : null}
     </Container>
   );
 }
