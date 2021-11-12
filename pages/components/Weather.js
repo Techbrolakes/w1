@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import DisplayWeather from "./components/DisplayWeather";
+import Display from "./Display";
 
 function Weather() {
   const [weather, setWeather] = useState([]);
@@ -64,7 +64,7 @@ function Weather() {
       {/* {console.log(weather)} */}
       {weather.data != undefined ? (
         <div>
-          <DisplayWeather data={weather.data} />
+          <Display data={weather.data} />
         </div>
       ) : null}
     </Container>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function DisplayWeather(props) {
+function Display(props) {
   const { data } = props;
   const iconurl =
     "http://openweathermap.org/img/wn/" +
@@ -97,7 +97,7 @@ function DisplayWeather(props) {
   );
 }
 
-export default DisplayWeather;
+export default Display;
 
 const Container = styled.div`
   width: 70vw;
